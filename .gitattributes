@@ -1,0 +1,4 @@
+# Repo and working trees always use LF, so scripts pulled into WSL run as-is (CRLF breaks bash).
+* text=auto eol=lf
+*.png binary
+*.wav binary

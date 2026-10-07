@@ -1,0 +1,8 @@
+# Not uploaded: scratch notes and files handed over by others
+docs/local_records/
+
+# Runtime (WSL side): venv, receiver log/pid
+.venv/
+/logs/
+__pycache__/
+*:Zone.Identifier
