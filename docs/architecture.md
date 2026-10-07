@@ -1,6 +1,6 @@
 # 現有架構與分工
 
-- Updated Time: 261008_0446
+- Updated Time: 261008_0540
 
 > 依 2026-10-08 實際讀取程式碼與執行中服務整理（唯讀調查，未修改任何既有檔案）。
 > RTP 方案已放棄：上游 LiveTalking 只輸出 WebRTC，接收端照它的方式接 WebRTC。
@@ -14,7 +14,7 @@
 |---|---|---|---|
 | **A** | 前端同事 | 網頁前端。瀏覽器是**最終的 WebRTC 接收方**（收影像＋聲音、顯示、算 debug 統計） | 前端 `cyber_gf` repo 的 `web/imood_ai.html`，由 :8010 提供 `/imood/imood_ai.html` |
 | **B** | 我們 | **中間接收端（WebRTC）** :8030：接瀏覽器的 `/offer`，向 LiveTalking 取得影像＋聲音和 sessionid，再送給瀏覽器 | `/root/imood_rtp/`（Windows 端副本：`C:\imood_project\temp_mem2\imood_rtp\`） |
-| **C** | 模型同事 | **LiveTalking + Wav2Lip** :8010：取代 JoyGen，產生數字人說話影像＋聲音，輸出 WebRTC | `/root/livetalking/LiveTalking`（`.venv-lt`），角色在 `data/avatars/wav2lip256_avatar2_*`、`avatar3_*` |
+| **C** | 模型同事 | **LiveTalking + Wav2Lip** :8010：取代 JoyGen，產生數位人說話影像＋聲音，輸出 WebRTC | `/root/livetalking/LiveTalking`（`.venv-lt`），角色在 `data/avatars/wav2lip256_avatar2_*`、`avatar3_*` |
 | **A** | 前端同事 | 語音服務 :8020（ASR → LLM → TTS → 把聲音推給 LiveTalking） | `cyber_gf/scripts/wsl/voice_service.py`（`/root/cyber_gf/.venv-tts-fast`） |
 | **A** | 前端同事 | LLM：llama-server :8090（Qwen3-14B） | Windows 端 |
 
@@ -45,7 +45,7 @@
        │ ◄══ WebRTC 影像+聲音    │ （TTS 聲音，16 kHz）     │
        ▼                       ▼                         ▼
 ┌──────────────────────── C：LiveTalking + Wav2Lip :8010 ────────────────────────┐
-│ session_manager：每個 sessionid 一個數字人 session（聲音 → 嘴型 → 影像＋聲音） │
+│ session_manager：每個 sessionid 一個數位人 session（聲音 → 嘴型 → 影像＋聲音） │
 └────────────────────────────────────────────────────────────────────────────────┘
 ```
 
